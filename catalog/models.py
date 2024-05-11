@@ -32,10 +32,9 @@ class Product(models.Model):
     prise = models.FloatField(verbose_name="цена")
     created_at = models.DateField(verbose_name="дата создания")
     updated_at = models.DateField(verbose_name="дата последнего изменения")
-    manufactured_at = models.DateField(verbose_name="дата производства", **NULLABLE)
 
     def __str__(self):
-        return f"{self.name_product}, {self.prise}, {self.date_create}"
+        return f"{self.name_product}, {self.prise}, {self.created_at}"
 
     class Meta:
         verbose_name = "продукт"
