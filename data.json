@@ -1,0 +1,65 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name_category": "телевизоры",
+      "description": "все виды телевизоров"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name_category": "смартфоны",
+      "description": "умный телефон"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name_category": "наушники",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name_product": "lg 2000",
+      "description": "smart tv",
+      "image": "",
+      "category": 1,
+      "prise": 10000.0,
+      "created_at": "2024-05-11",
+      "updated_at": "2024-05-11"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name_product": "Samsung 10029",
+      "description": "LSD телевизор с функцией 3D",
+      "image": "",
+      "category": 1,
+      "prise": 20000.0,
+      "created_at": "2024-05-11",
+      "updated_at": "2024-05-11"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name_product": "poco m3 pro",
+      "description": "экран 10\"\", пам€ть 64 √б, WiFi 5, ...",
+      "image": "",
+      "category": 3,
+      "prise": 15000.0,
+      "created_at": "2024-05-11",
+      "updated_at": "2024-05-11"
+    }
+  }
+]
