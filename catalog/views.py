@@ -25,6 +25,6 @@ def product(request):
 
 
 def product_detal(request, pk):
-    one_product = Product.objects.get(pk=pk)
-    context = {'one_product': one_product}
-    return render(request, 'product_detal', context)
+    one_product = get_object_or_404(Product, pk=pk)
+    context = {'product': one_product}
+    return render(request, 'product_detal.html', context)
