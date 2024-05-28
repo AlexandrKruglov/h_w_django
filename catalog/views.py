@@ -1,32 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 import os
 
+from django.views.generic import ListView, DetailView, TemplateView
+
 from catalog.models import Product
 
 
-def home(request):
-    products = Product.objects.all()
-    context = {'products': products}
-    return render(request, 'home.html', context)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'catalog/home.html'
 
 
-def contacts(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        message = request.POST.get('message')
-        with open(os.path.join("cont.txt"), 'a', encoding="utf-8") as f:
-            f.write(f"nane: {name}, phone: {phone}, message: {message}")
-    return render(request, 'contacts.html')
+class Product2ListView(ListView):
+    model = Product
 
 
-def product(request):
-    products = Product.objects.all()
-    context = {'products': products}
-    return render(request, 'product_list.html', context)
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product_detal(request, pk):
-    one_product = get_object_or_404(Product, pk=pk)
-    context = {'product': one_product}
-    return render(request, 'product_detal.html', context)
+class ContactsPageVeiw(TemplateView):
+    template_name = 'catalog/contacts.html'
+
+
