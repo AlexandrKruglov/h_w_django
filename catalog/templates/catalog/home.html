@@ -26,6 +26,11 @@
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>- {{ product.description|slice:100 }}</li>
                     </ul>
+                    {% for version in product.version_set.all %}
+                    {% if version.activ %}
+                         <p>Версия: {{version.number}} Название: {{version.name}}</p>
+                    {% endif %}
+                    {% endfor %}
                     <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">Просмотреть</a>
                 </div>
             </div>
