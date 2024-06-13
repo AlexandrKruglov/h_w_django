@@ -14,16 +14,27 @@ class StyleFormMixin:
 
 
 class ProductForm(StyleFormMixin, ModelForm):
+    stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+
     class Meta:
         model = Product
-        fields = "__all__"
+        fields = ("name_product", "description", "image", "category", "prise", "created_at", "updated_at")
 
     def clean_name_product(self):
-        cleaned_data = self.cleaned_data.get('name_product')
-        stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
-        for word in stop_word:
-            if word in cleaned_data :
+        cleaned_data = self.cleaned_data['name_product']
+        #stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        for word in self.stop_word:
+            if word in cleaned_data.lower():
                 raise forms.ValidationError('поменяйте имя продукта')
+
+        return cleaned_data
+
+    def clean_description(self):
+        cleaned_data = self.cleaned_data['description']
+        #stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        for word in self.stop_word:
+            if word in cleaned_data.lower():
+                raise forms.ValidationError('в описании запрещенные слова')
 
         return cleaned_data
 
@@ -32,4 +43,3 @@ class VersionForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Version
         fields = "__all__"
-

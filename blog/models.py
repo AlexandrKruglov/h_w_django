@@ -1,6 +1,5 @@
 from django.db import models
 
-
 NULLABLE = {"blank": True, "null": True}
 
 
@@ -22,4 +21,3 @@ class Article(models.Model):
         verbose_name = "статья"
         verbose_name_plural = "статьи"
         ordering = ("name",)
-

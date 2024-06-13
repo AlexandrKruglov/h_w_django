@@ -1,6 +1,5 @@
 from django.forms import inlineformset_factory
-from django.shortcuts import render, get_object_or_404
-import os
+
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
@@ -59,5 +58,3 @@ class ProductDeleteView(DeleteView):
 
 class ContactsPageVeiw(TemplateView):
     template_name = 'catalog/contacts.html'
-
-
