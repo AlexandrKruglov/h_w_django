@@ -22,7 +22,7 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_name_product(self):
         cleaned_data = self.cleaned_data['name_product']
-        #stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        # stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
         for word in self.stop_word:
             if word in cleaned_data.lower():
                 raise forms.ValidationError('поменяйте имя продукта')
@@ -31,12 +31,18 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_description(self):
         cleaned_data = self.cleaned_data['description']
-        #stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        # stop_word = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
         for word in self.stop_word:
             if word in cleaned_data.lower():
                 raise forms.ValidationError('в описании запрещенные слова')
 
         return cleaned_data
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ("description", "category", "published")
 
 
 class VersionForm(StyleFormMixin, ModelForm):

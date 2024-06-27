@@ -1,5 +1,6 @@
 import secrets
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetView, PasswordChangeView
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -68,7 +69,7 @@ class UserPasswordResetView(PasswordResetView):
             return HttpResponseRedirect(reverse('users:login'))
 
 
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
