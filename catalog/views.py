@@ -6,7 +6,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
 from catalog.form import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.services import get_category_from_cache
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -73,7 +74,12 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('catalog:product')
 
 
-
-
 class ContactsPageVeiw(TemplateView):
     template_name = 'catalog/contacts.html'
+
+
+class CategoryListView(ListView):
+    model = Category
+
+    def get_queryset(self):
+        return get_category_from_cache()
